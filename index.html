@@ -1,9 +1,96 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+
 <html>
     <head>
         <title>Multiview Tool</title>
-    </head>
-    <body>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="HandheldFriendly" content="true">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         
+        <style type="text/css" media="all">
+            .bodydiv {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                padding: 20px;
+            }
+            .display {
+                outline-style: solid;
+                outline-color: black;
+                background-color: lightgray;
+                width: 100%;
+                height: 0;
+                padding-top: 56.25%; /* 16:9 aspect ratio */
+                position: relative;
+            }
+            .controls {
+                padding-top: 20px;
+                padding-bottom: 50px;
+            }
+            label {
+                padding-right: 10px;
+            }
+            .text {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                padding: 20px;
+                font-weight: 600;
+            }
+            .quadrant {
+                outline-style: solid;
+                outline-color: black;
+                background-color: rgb(165, 26, 26);
+                position: relative;
+                z-index: -1;
+            }
+        </style>
+
+        <script>
+            function getValues() {
+                var x = document.getElementById("input1");
+                document.getElementById("text").innerHTML = "";
+                var points = [];
+                var i;
+                for (i=0; i<x.length; i++) {
+                    points.push(x.elements[i].value);
+                }
+/*                 document.getElementById("text").innerHTML = points;
+ */                drawBox(points);
+            }
+
+            function drawBox(points) {
+                var box = document.getElementById("box1");
+                box.setAttribute("x", points[0]);
+                box.setAttribute("y", points[1]);
+                box.setAttribute("width", points[2]-points[0]);
+                box.setAttribute("height", points[3]-points[1]);
+            }
+        </script>
+    </head>
+
+    <body>
+        <div class="bodydiv">
+            <div class="display">
+                <div class="text" id="text">TEST</div>
+                <div class="quadrant" id="box1" x="100px" y="100[x" z="-1" height="100px" width="100px"></div> <!--box for input 1-->
+            </div>
+            
+            <div class="controls">
+                <form id="input1">
+                    <label>Input 1</label>
+                    X0: <input class="input1" type="number" name="x0" value="100" min="0" max="1919">
+                    Y0: <input class="input1" type="number" name="y0" value="100" min="0" max="1079">
+                    X1: <input class="input1" type="number" name="x1" value="100" min="0" max="1919">
+                    Y1: <input class="input1" type="number" name="y1" value="100" min="0" max="1919">
+                </form>
+                <button onclick="getValues()" id="btn-enter">Enter</button>
+            </div>
+        </div>
     </body>
 </html>
