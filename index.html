@@ -24,7 +24,7 @@
              .display {
                 outline-style: solid;
                 outline-color: black;
-                background-color: lightgray;
+                background-color: black;
                 width: 100%;
                 height: 0;
                 padding-top: 56.25%;  /* 16:9 aspect ratio */ 
@@ -32,8 +32,16 @@
                 
             }
             .controls {
-                padding-top: 20px;
+                padding-top: 40px;
                 padding-bottom: 50px;
+                width: 50%;
+                /* top: 50px; */
+            }
+            .commands {
+                float: right;
+                height: 20%;
+                width: 50%;
+                padding: 10px;
             }
             label {
                 padding-right: 10px;
@@ -83,13 +91,40 @@
                     var i;
                     for (i=0; i<x.length; i++) {
                         points.push(x.elements[i].value);
-                    }
-    /*                 document.getElementById("text").innerHTML = points;*/             
+                    }          
                     console.log(points);
+
+                    var command = document.getElementById("input" + j + "_command");
+                    var command_text = "SPM0" + j + "XY";
+                    var k;
+                    for (k=0; k<=3; k++) {
+                        var param = points[k];
+                        console.log("param length = " + param.length);
+                        switch (param.length) {
+                            case 1:
+                                param = "000" + param;
+                                break;
+                            case 2:
+                                param = "00" + param;
+                                break;
+                            case 3:
+                                param = "0" + param;
+                                break;
+                            default:
+                                break;
+                        }
+                        if (k != 3) {
+                            command_text = command_text + param + ".";
+                            } else {
+                                command_text = command_text + param;
+                            }
+                        command.innerHTML = command_text;
+                    }
+                    
                     drawBox(points, "box" + j);
                 }
+                
             }
-
 
             function drawBox(points, boxID) {
                 var width_percent = ((points[2]-points[0])/1920)*100;
@@ -120,14 +155,18 @@
     <body>
         <div class="bodydiv">
             <div class="display">
-                <!-- <div class="text" id="text">TEST</div> -->
-                
                 <div class="quadrant" id="box1">Input 1</div> <!--box for input 1-->
                 <div class="quadrant" id="box2">Input 2</div> <!--box for input 2-->
                 <div class="quadrant" id="box3">Input 3</div> <!--box for input 3-->
                 <div class="quadrant" id="box4">Input 4</div> <!--box for input 4-->
             </div>
-            
+            <div class="commands">
+                <label>Commands</label>
+                <p id="input1_command"></p>
+                <p id="input2_command"></p>
+                <p id="input3_command"></p>
+                <p id="input4_command"></p>
+            </div>
             <div class="controls">
                 <form id="input1">
                     <label>Input 1</label>
@@ -159,6 +198,7 @@
                 </form>
                 <button onclick="getValues()" id="btn-enter">Enter</button>
             </div>
+            
         </div>
     </body>
 </html>
