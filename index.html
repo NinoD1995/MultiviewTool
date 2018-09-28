@@ -39,12 +39,18 @@
             .layers {
                 padding-top: 40px;
                 padding-bottom: 50px;
-                width: 50%;
+                width: 40%;
+                float: left;
+            }
+            .transparency {
+                padding-top: 40px;
+                padding-bottom: 50px;
+                
             }
             .commands {
                 float: right;
                 height: 20%;
-                width: 50%;
+                width: 60%;
                 padding: 10px;
             }
             label {
@@ -73,18 +79,22 @@
             #box1 {
                 background-color: cornflowerblue;
                 z-index: 4;
+                opacity: 1;
             }
             #box2 {
                 background-color: firebrick;
                 z-index: 3;
+                opacity: 1;
             }
             #box3 {
                 background-color: seagreen;
                 z-index: 2;
+                opacity: 1;
             }
             #box4 {
                 background-color: darkgoldenrod;
                 z-index: 1;
+                opacity: 1;
             }
         </style>
 
@@ -159,22 +169,17 @@
                 
                 var quadrant = "box" + inputNum;
                 var box = document.getElementById(quadrant); //box to be adjusted
-                //console.log(quadrant);
-
-               /*  for (j=1; j<=4; j++) { //for each form, check it's corresponding layer
-                    if (j != inputNum) {
-                        var inputLayerID = "input" + j + "Layer";
-                        var form = document.getElementById(inputLayerID);
-                        if (form.elements[].value == layer) {
-
-                        }
-                    }
-                    
                 
-                } */
 
                 box.style.zIndex = layer;
-                box.value = layer;
+            }
+
+            function changeTransparency(inputNum, level) {
+                
+                var quadrant = "box" + inputNum;
+                var box = document.getElementById(quadrant); //box to be adjusted
+
+                box.style.opacity = level;
             }
         </script>
     </head>
@@ -221,7 +226,7 @@
                 </form>
                 <form id="input4">
                     <label>Input 4</label>
-                    X0: <input class="input4" type="number" name="x0" value="960" min="0" max="1919">
+                    X0: <input class="input4" type="number" name="x0" value="0" min="0" max="1919">
                     Y0: <input class="input4" type="number" name="y0" value="540" min="0" max="1079">
                     X1: <input class="input4" type="number" name="x1" value="1919" min="0" max="1919">
                     Y1: <input class="input4" type="number" name="y1" value="1079" min="0" max="1919">
@@ -229,6 +234,7 @@
                 <button onclick="getValues()" id="btn-enter">Enter</button>
             </div>
             <div class="layers">
+                <label>Layering</label>
                 <form id="input1Layer">
                     <label>Input 1</label>
                     <input type="radio" id="layer1" name="input1" value="4" checked onclick="changeLayer(1, 4)"> Layer 1
@@ -256,6 +262,37 @@
                     <input type="radio" id="layer2" name="input4" value="3" onclick="changeLayer(4, 3)"> Layer 2
                     <input type="radio" id="layer3" name="input4" value="2" onclick="changeLayer(4, 2)"> Layer 3
                     <input type="radio" id="layer4" name="input4" value="1" checked onclick="changeLayer(4, 1)"> Layer 4
+                </form>
+            </div>
+            <div class="transparency">
+                <label>Transparency</label>
+                <form id="input1Trans">
+                    <label>Input 1</label>
+                    <input type="radio" id="trans1" name="input1" onclick="changeTransparency(1, 0.25)"> 25%
+                    <input type="radio" id="trans2" name="input1" onclick="changeTransparency(1, 0.5)"> 50%
+                    <input type="radio" id="trans3" name="input1" onclick="changeTransparency(1, 0.75)"> 75%
+                    <input type="radio" id="trans4" name="input1" checked onclick="changeTransparency(1, 1)"> 100%
+                </form>
+                <form id="input2Trans">
+                    <label>Input 2</label>
+                    <input type="radio" id="trans1" name="input2" onclick="changeTransparency(2, 0.25)"> 25%
+                    <input type="radio" id="trans2" name="input2" onclick="changeTransparency(2, 0.5)"> 50%
+                    <input type="radio" id="trans3" name="input2" onclick="changeTransparency(2, 0.75)"> 75%
+                    <input type="radio" id="trans4" name="input2" checked onclick="changeTransparency(2, 1)"> 100%
+                </form>
+                <form id="input3Trans">
+                    <label>Input 3</label>
+                    <input type="radio" id="trans1" name="input3" onclick="changeTransparency(3, 0.25)"> 25%
+                    <input type="radio" id="trans2" name="input3" onclick="changeTransparency(3, 0.5)"> 50%
+                    <input type="radio" id="trans3" name="input3" onclick="changeTransparency(3, 0.75)"> 75%
+                    <input type="radio" id="trans4" name="input3" checked onclick="changeTransparency(3, 1)"> 100%
+                </form>
+                <form id="input4Trans">
+                    <label>Input 4</label>
+                    <input type="radio" id="trans1" name="input4" onclick="changeTransparency(4, 0.25)"> 25%
+                    <input type="radio" id="trans2" name="input4" onclick="changeTransparency(4, 0.50)"> 50%
+                    <input type="radio" id="trans3" name="input4" onclick="changeTransparency(4, 0.75)"> 75%
+                    <input type="radio" id="trans4" name="input4" checked onclick="changeTransparency(4, 1)"> 100%
                 </form>
             </div>
         </div>

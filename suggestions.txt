@@ -1,10 +1,12 @@
-1.	X0 Y0 , X1 Y1 command calculator
-    a.	this is the command :
-    Multiview Screen Manual Setup Command -- -- ( vv=[01~04], aaaa=[0000~1919], bbbb=[0000~1079] ) -- -- ( cccc=[0000~1919], dddd=[0000~1079], z=[0~9] )
-    SPM vv XY aaaa.bbbb.cccc.dddd 
-    Set Start of X/Y-axis by aaaa/bbbb-- and End of X/Y-aixs by cccc/dddd on the Output Screen for Input vv--
+***DONE***1.	X0 Y0 , X1 Y1 command calculator
+            a.	this is the command :
+            Multiview Screen Manual Setup Command -- -- ( vv=[01~04], aaaa=[0000~1919], bbbb=[0000~1079] ) -- -- ( cccc=[0000~1919], dddd=[0000~1079], z=[0~9] )
+            SPM vv XY aaaa.bbbb.cccc.dddd 
+            Set Start of X/Y-axis by aaaa/bbbb-- and End of X/Y-aixs by cccc/dddd on the Output Screen for Input vv--
 
 2.	Add "Maintain 16:9 Aspect Ratio Lock" 
     a.	Will keep input windows in 16:9 AR, which is desired 90+% of time
 
 3.	Layering & Transparency
+*********layering is done. want to implement way to swap selected radio button if another input is using selected layer
+*********want to add command output for layers
